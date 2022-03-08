@@ -1,0 +1,64 @@
+<html>
+
+<head>
+    <style>
+        body {
+            background-color: #56775d;
+            color: rgb(15, 66, 36);
+            font-family: Arial;
+        }
+
+        h1 {
+            font-size: 50px;
+        }
+
+        p, a {
+            font-size: 30px;
+        }
+
+        a {
+            color: rgb(38, 0, 177);
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 100px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>{{ title }}</h1> <!--from tuple in app.py-->
+
+        <p>{{ text }}</p> <!--from tuple in app.py-->
+
+
+        {% if choices %}
+
+            <p>What do you do?</p>
+
+            <ul>
+                {% for (page_name, choice) in choices %}
+                <li>
+                    <a href="{{url_for(page_name)}}">{{choice}}</a> <!--flask.url_for(endpoint, **values) generates a URL to the given endpoint with the method provided-->
+                </li>
+                
+                {% endfor %}
+            </ul>
+
+        {% else %}
+            
+            <p>THE END.</p>
+
+
+            <p><a href="{{url_for('start')}}">Play again.</a></p>
+
+        {% endif %}
+
+
+    </div>
+</body>
+
+</html>
